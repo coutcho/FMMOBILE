@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0; /* Ensure no default padding */
+  background-image: url('/background.jpg'); /* Ensure 'background.jpg' is in your public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* Fixed to the viewport */
+  top: 0;
+  left: 0;
+  width: 100%;   /* Cover full width */
+  height: 100%;  /* Cover full height */
+  background-color: rgba(0, 0, 0, 0.7); /* Increased opacity from 0.5 to 0.7 */
+  z-index: 0; /* Sits above body background, but below #root content */
+}
+
+#root {
+  position: relative;    /* Establishes a stacking context for z-index to work */
+  z-index: 1;          /* Ensures #root content is rendered on top of the body::before overlay */
+  min-height: 100vh;   /* Ensures the app container can fill the viewport height */
+  /* background-color: transparent; /* Optionally, be explicit that #root has no background if needed */
+}
+
